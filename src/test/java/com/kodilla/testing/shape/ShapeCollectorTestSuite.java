@@ -22,18 +22,17 @@ public class ShapeCollectorTestSuite {
             //When
             shapeCollector.addFigure(circle);
             //Then
-            boolean result = shapeCollector.shapeList.contains(circle);
+            boolean result = shapeCollector.getShapeList().contains(circle);
             Assertions.assertTrue(result);
         }
-
         @Test
         void testRemoveFigure() {
             //Given
             Square square = new Square(5);
             //When
             shapeCollector.addFigure(square);
-            boolean result = shapeCollector.removeFigure(square);
             //Then
+            boolean result = shapeCollector.removeFigure(square);
             Assertions.assertTrue(result);
         }
     }
@@ -46,10 +45,11 @@ public class ShapeCollectorTestSuite {
             Triangle triangle = new Triangle(5, 6);
             shapeCollector.addFigure(triangle);
             //When
-            String result = shapeCollector.getFigure(0);
+             Shape shapeFromList = shapeCollector.getFigure(0);
             //Then
-            String expected = triangle.getShapeName();
-            Assertions.assertEquals(expected, result);
+            Shape expected = new Triangle(5,6);
+            boolean result = shapeFromList.equals(expected);
+            Assertions.assertTrue(result);
         }
         @Test
         void testShowFigures() {
@@ -58,9 +58,8 @@ public class ShapeCollectorTestSuite {
             //When
             String result = shapeCollector.showFigures(shapeList);
             //Then
-            String expected = "trianglesquarecircle";
+            String expected = "triangle, square, circle";
             Assertions.assertEquals(expected, result);
         }
     }
-
 }

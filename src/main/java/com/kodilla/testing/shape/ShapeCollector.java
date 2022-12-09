@@ -5,11 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ShapeCollector {
-    List<Shape> shapeList = new ArrayList<>();
+    private List<Shape> shapeList = new ArrayList<>();
+
+    public List<Shape> getShapeList() {
+        return this.shapeList;
+    }
+
     public void addFigure(Shape shape){
         shapeList.add(shape);
     }
-    public boolean removeFigure(Shape shape) {
+     boolean removeFigure(Shape shape) {
         boolean result = false;
         if(shapeList.contains(shape)){
             shapeList.remove(shape);
@@ -17,9 +22,9 @@ public class ShapeCollector {
         }
         return result;
     }
-    public String getFigure(int n){
-        String result = shapeList.get(n).getShapeName();
-        return result;
+    public Shape getFigure(int n){
+       Shape shape = shapeList.get(n);
+        return shape;
     }
     public String showFigures(List<Shape> shapes){
         StringBuffer sb = new StringBuffer();
