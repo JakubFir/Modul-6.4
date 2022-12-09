@@ -26,7 +26,10 @@ class WeatherForecastTestSuite {
         temperaturesMap.put("Warszawa", 25.2);
         temperaturesMap.put("Gdansk", 26.1);
         Mockito.when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
+        int size = temperaturesMap.size();
+
 }
+
 
     @Test
     void testCalculateForecastWithMock() {
@@ -49,7 +52,7 @@ class WeatherForecastTestSuite {
         Assertions.assertEquals(25.56,average);
     }
     @Test
-    void testMedian(){
+    void testEvenMedian(){
         //Given
         Map<String, Double> temperaturesMap = new HashMap<>();
         temperaturesMap.put("Rzeszow", 25.5);
@@ -63,10 +66,16 @@ class WeatherForecastTestSuite {
         //When
         double median = weatherForecast.getTemperatureMedian();
         //then
-        if(temperaturesMap.size() % 2 ==0) {
             Assertions.assertEquals(25.35, median);
-        }else{
+    }
+    @Test
+    void testOddMedian(){
+        //Given
+        mockData();
+        WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
+        //When
+        double median = weatherForecast.getTemperatureMedian();
+        //then
             Assertions.assertEquals(25.5,median);
-        }
     }
 }
