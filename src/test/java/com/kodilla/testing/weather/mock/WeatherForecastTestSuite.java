@@ -66,7 +66,7 @@ class WeatherForecastTestSuite {
         //When
         double median = weatherForecast.getTemperatureMedian();
         //then
-            Assertions.assertEquals(25.35, median);
+        Assertions.assertEquals(25.35, median);
     }
     @Test
     void testOddMedian(){
@@ -76,6 +76,6 @@ class WeatherForecastTestSuite {
         //When
         double median = weatherForecast.getTemperatureMedian();
         //then
-            Assertions.assertEquals(25.5,median);
+        Assertions.assertEquals(25.5,median);
     }
 }
