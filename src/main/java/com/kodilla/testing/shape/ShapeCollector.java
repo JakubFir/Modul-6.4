@@ -29,8 +29,10 @@ public class ShapeCollector {
     public String showFigures(List<Shape> shapes){
         StringBuffer sb = new StringBuffer();
         for(int i = 0; i < shapes.size(); i++){
-            sb.append(shapes.get(i).getShapeName());
+            sb.append(shapes.get(i).getShapeName() + ", ");
         }
+        sb.deleteCharAt(sb.length()-2);
+        sb.deleteCharAt(sb.length()-1);
         String result = sb.toString();
         return result;
     }
