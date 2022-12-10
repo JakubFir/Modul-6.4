@@ -29,8 +29,6 @@ class WeatherForecastTestSuite {
         int size = temperaturesMap.size();
 
 }
-
-
     @Test
     void testCalculateForecastWithMock() {
         //Given
