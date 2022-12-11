@@ -31,8 +31,10 @@ public class StatisticsCalculationTestSuite {
         List<String> users = generateListOfNUserNames(5);
         when(statisticsMock.postsCount()).thenReturn(postCounts);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = statisticsCalculation.getAveragePostsPerUser();
+
         //then
         Assertions.assertEquals(0, result);
     }
@@ -45,8 +47,10 @@ public class StatisticsCalculationTestSuite {
         List<String> users = generateListOfNUserNames(5);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = statisticsCalculation.getAveragePostsPerUser();
+
         //then
         Assertions.assertEquals(200, result);
     }
@@ -59,8 +63,10 @@ public class StatisticsCalculationTestSuite {
         List<String> users = generateListOfNUserNames(5);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = statisticsCalculation.getAverageCommentsPerUser();
+
         //then
         Assertions.assertEquals(0, result);
     }
@@ -75,8 +81,10 @@ public class StatisticsCalculationTestSuite {
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = statisticsCalculation.getAverageCommentsPerUser();
+
         //then
         Assertions.assertEquals(2, result);
 
@@ -84,6 +92,7 @@ public class StatisticsCalculationTestSuite {
 
     @Test
     void averageCommentsPerUserWithConditionMoreComments() {
+        //Given
         StatisticsCalculation statisticsCalculation = new StatisticsCalculation(statisticsMock);
         int postsCount = 10;
         int commentsCount = 100;
@@ -91,14 +100,17 @@ public class StatisticsCalculationTestSuite {
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = statisticsCalculation.getAverageCommentsPerUser();
+
         //then
         Assertions.assertEquals(20, result);
     }
 
     @Test
     void averageCommentPerPostWithConditionUsers0() {
+        //Given
         StatisticsCalculation statisticsCalculation = new StatisticsCalculation(statisticsMock);
         int postsCount = 10;
         int commentsCount = 0;
@@ -106,14 +118,17 @@ public class StatisticsCalculationTestSuite {
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = statisticsCalculation.getAverageCommentsPerPost();
+
         //then
         Assertions.assertEquals(0, result);
     }
 
     @Test
     void averageCommentsPerPostWithConditionUsers100() {
+        //Given
         StatisticsCalculation statisticsCalculation = new StatisticsCalculation(statisticsMock);
         int postsCount = 1;
         int commentsCount = 100;
@@ -121,34 +136,42 @@ public class StatisticsCalculationTestSuite {
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.commentsCount()).thenReturn(commentsCount);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = (statisticsCalculation.getAverageCommentsPerPost());
+
         //then
         Assertions.assertEquals(100, result);
     }
 
     @Test
     void averagePostsPerUserWithConditionUsers100() {
+        //Given
         StatisticsCalculation statisticsCalculation = new StatisticsCalculation(statisticsMock);
         int postsCount = 1000;
         List<String> users = generateListOfNUserNames(100);
         when(statisticsMock.postsCount()).thenReturn(postsCount);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = (statisticsCalculation.getAveragePostsPerUser());
+
         //then
         Assertions.assertEquals(10, result);
     }
 
     @Test
     void averageCommentsPerUserWithConditionUsers100() {
+        //Given
         StatisticsCalculation statisticsCalculation = new StatisticsCalculation(statisticsMock);
         int commentCount = 100;
         List<String> users = generateListOfNUserNames(100);
         when(statisticsMock.postsCount()).thenReturn(commentCount);
         when(statisticsMock.usersNames()).thenReturn(users);
+
         //when
         double result = (statisticsCalculation.getAveragePostsPerUser());
+
         //then
         Assertions.assertEquals(1, result);
     }
