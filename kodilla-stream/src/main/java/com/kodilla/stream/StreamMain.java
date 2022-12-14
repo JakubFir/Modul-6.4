@@ -5,6 +5,7 @@ import com.kodilla.stream.book.BookDirectory;
 import com.kodilla.stream.forumuser.Forum;
 import com.kodilla.stream.forumuser.ForumUser;
 
+
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -30,4 +31,6 @@ public class StreamMain {
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .forEach(System.out::println);
     }
+
+
 }
