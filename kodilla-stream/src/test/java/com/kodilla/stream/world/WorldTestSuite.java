@@ -23,10 +23,11 @@ public class WorldTestSuite {
         world.listOfContinents.add(new Continent("Europe",countriesInEurope));
         world.listOfContinents.add(new Continent("Asia",countriesInAsia));
         world. listOfContinents.add(new Continent("Africa",countriesInAfrica));
+
         //when
         BigDecimal result = world.getPeopleQuantity();
+
         //then
-        BigDecimal expected = new BigDecimal("123302912");
-        Assertions.assertEquals(expected,result);
+        Assertions.assertEquals(new BigDecimal("123302912"),result);
     }
 }
