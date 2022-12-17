@@ -155,16 +155,12 @@ class BoardTestSuite {
         List<Task> tasks = project.getTaskLists().stream()          // [4]
                 .filter(inProgressTasks::contains)                           // [5]
                 .flatMap(tl -> tl.getTasks().stream())// [6]
-                .filter(task -> task.getDeadline().isAfter(LocalDate.now()))
                 .collect(toList());
         double average = IntStream.range(0,tasks.size())
                 .mapToLong(n-> tasks.get(n).getCreated().datesUntil(LocalDate.now()).count())
                 .average().getAsDouble();
 
         //then
-        Assertions.assertEquals(5,average);
-
-
-
+        assertEquals(10,average);
     }
 }
