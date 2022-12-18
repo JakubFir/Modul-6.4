@@ -1,3 +1,4 @@
 rootProject.name = 'Shapes'
 include 'kodilla-stream'
+include 'kodilla-rps'
 
