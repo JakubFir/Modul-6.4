@@ -11,6 +11,9 @@ public class RpsGame  {
 
     private Random rnd = new Random();
     private  boolean endGame = false;
+    String computerMove;
+    String diff;
+    String answer;
     boolean startGame = false;
 
     void startOfGame(){
@@ -19,21 +22,30 @@ public class RpsGame  {
                 startGame = true;
             }
         }while(!startGame);
-        rpsMenu.StartGame(inputValidator.getName(), inputValidator.getRounds());
+        rpsMenu.startGame(inputValidator.getName(), inputValidator.getRounds());
         player.setPlayerPoints(0);
         computer.setComputerPoints(0);
-        gameMenage();
+        do {
+            if (inputValidator.validDiff(diff = rpsMenu.diffLevel())) {
+                gameMenage();
+            }
+        }while(!inputValidator.validDiff(diff = rpsMenu.diffLevel()));
     }
-
     void gameMenage(){
         do {
-            rpsMenu.menu();
-            String computerMove = computer.computerMove();
-            menageAnswers(computerMove);
-            rpsMenu.scoreBoard();
+            rpsMenu.menu(inputValidator.getName());
+            answer = scanner.nextLine();
+            if(diff.equals("1")) {
+                computerMove = computer.computerMove();
+            }else if (diff.equals("2")) {
+                computerMove = computer.computerMoveOnHardMode(answer);
+            }
+            menageAnswers(computerMove, answer);
+            rpsMenu.scoreBoard(player.getPlayerPoints(),computer.getComputerPoints());
             checkingWinner(inputValidator.getRounds());
         }while (!endGame);
     }
+
 
 
     public void gameLogic(String answer,String computerChoice){
@@ -46,8 +58,7 @@ public class RpsGame  {
         else computer.setComputerPoints(computer.getComputerPoints()+1);
     }
 
-    public void menageAnswers(String computerMove){
-        String answer = scanner.nextLine().toLowerCase();
+    public void menageAnswers(String computerMove,String answer){
         if(player.getPlayerMoves().contains(answer)) {
             if (answer.equals("1")) {
                 gameLogic("rock", computerMove);

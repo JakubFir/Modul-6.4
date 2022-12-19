@@ -16,6 +16,7 @@ public class InputValidator {
 
     private  int rounds;
     private boolean valid= false;
+    private boolean validDiff = false;
     private boolean validRounds = false;
     private Scanner scanner = new Scanner(System.in);
 
@@ -33,6 +34,17 @@ public class InputValidator {
         }while (!validRounds);
         scanner.nextLine();
         return validRounds;
+    }
+    boolean validDiff(String answer){
+
+        if(answer.equals("1") || answer.equals("2")){
+            validDiff = true;
+        }
+        else{
+            System.out.println("Wrong input");
+            validDiff = false;
+        }
+            return validDiff;
     }
     boolean validName(){
         System.out.println("Please give me your Name to start the game");
