@@ -1,50 +1,34 @@
 package com.kodilla.rps;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Computer {
-
-    Random rnd = new Random();
     Player player = new Player();
-    Scanner scanner = new Scanner(System.in);
-
+    Random rnd = new Random();
     private int computerPoints = 0;
-    private List <String> listOfMoves;
-    private List <String> listOfMovesOnHardMode;
-    private List<String> listOfMoves(){
-        listOfMoves = new ArrayList<>();
-        listOfMoves.add("rock");
-        listOfMoves.add("paper");
-        listOfMoves.add("scisors");
-        return listOfMoves;
+    private Map<Integer,String> mapOfMoves;
+    private Map <Integer,String> listOfMovesOnHardMode;
+
+    private Map<Integer,String> mapOfMovesOnHardMode(){
+        mapOfMoves = new HashMap<>();
+        mapOfMoves.put(1,"rock");
+        mapOfMoves.put(2,"paper");
+        mapOfMoves.put(3,"scisors");
+        return mapOfMoves;
     }
+
     public String computerMove(){
-        String computerChoice = listOfMoves().get(rnd.nextInt(3));
-        return computerChoice;
+        return player.getMapOfMoves().get(rnd.nextInt(1,3));
     }
-    public List<String> listOfMovesOnHardMode(String answer){
-        listOfMovesOnHardMode = new ArrayList<>();
-        listOfMovesOnHardMode.add("rock");
-        listOfMovesOnHardMode.add("paper");
-        listOfMovesOnHardMode.add("scisors");
-        if(answer.equals("1")){
-            listOfMovesOnHardMode.add("paper");
-        }
-        if(answer.equals("2")){
-            listOfMovesOnHardMode.add("scisors");
-        }
-        if(answer.equals("3")){
-            listOfMovesOnHardMode.add("rock");
-        }
+
+    public Map<Integer,String> listOfMovesOnHardMode(Integer answer){
+        listOfMovesOnHardMode = mapOfMovesOnHardMode();
+        listOfMovesOnHardMode.put(4,player.getMapOfMoves().get(answer));
     return listOfMovesOnHardMode;
     }
 
-    public String computerMoveOnHardMode(String answer){
-        String computerChoiceOnHardMode = listOfMovesOnHardMode(answer).get(rnd.nextInt(4));
-        return computerChoiceOnHardMode;
+    public String computerMoveOnHardMode(Integer answer){
+        return listOfMovesOnHardMode(answer).get(rnd.nextInt(1,4));
     }
 
     public void setComputerPoints(int computerPoints) {

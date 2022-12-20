@@ -1,24 +1,21 @@
 package com.kodilla.rps;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player  {
-    private List<String> playerMoves;
+    private Map<Integer,String> mapOfMoves;
     private int playerPoints = 0;
 
-    private List<String> playerMoves(){
-        playerMoves = new ArrayList<>();
-        playerMoves.add("1");
-        playerMoves.add("2");
-        playerMoves.add("3");
-        playerMoves.add("x");
-        playerMoves.add("n");
-        return playerMoves;
+    private Map<Integer,String> mapOfMoves(){
+        mapOfMoves = new HashMap<>();
+        mapOfMoves.put(1,"rock");
+        mapOfMoves.put(2,"paper");
+        mapOfMoves.put(3,"scisors");
+        return mapOfMoves;
     }
-
-    public List<String> getPlayerMoves() {
-        return playerMoves();
+    public Map<Integer, String> getMapOfMoves() {
+        return mapOfMoves();
     }
 
     public int getPlayerPoints() {
