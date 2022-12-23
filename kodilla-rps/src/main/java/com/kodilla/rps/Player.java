@@ -15,7 +15,7 @@ public class Player  {
         return mapOfMoves;
     }
     public Map<Integer, String> getMapOfMoves() {
-        return mapOfMoves();
+        return  mapOfMoves();
     }
 
     public int getPlayerPoints() {

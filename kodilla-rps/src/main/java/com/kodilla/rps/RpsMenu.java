@@ -3,8 +3,21 @@ package com.kodilla.rps;
 import java.util.Scanner;
 
 public class RpsMenu {
-    String dificulty;
-    String endGameChoice;
+    private String difficulty;
+    private String endGameChoice;
+    public String getDifficult() {
+        return difficulty;
+    }
+
+    public String getEndGameChoice() {
+        return endGameChoice;
+    }
+
+
+    public void setEndGameChoice(String endGameChoice) {
+        this.endGameChoice = endGameChoice;
+    }
+
     Scanner scanner = new Scanner(System.in);
     public void startGame(String name, int rounds){
         System.out.println("Hello: " + name + "\n");
@@ -15,18 +28,9 @@ public class RpsMenu {
         System.out.println("choice difficulty level");
         System.out.println("1. normal");
         System.out.println("2. hard");
-        dificulty = scanner.nextLine();
-        return dificulty;
+        difficulty = scanner.nextLine();
+        return difficulty;
     }
-
-    public String getDifficult() {
-        return dificulty;
-    }
-
-    public String getEndGameChoice() {
-        return endGameChoice;
-    }
-
     public void rpsGameMenu(String name){
         System.out.println(name + " its your time to move: ");;
         System.out.println("press 1 to play rock");

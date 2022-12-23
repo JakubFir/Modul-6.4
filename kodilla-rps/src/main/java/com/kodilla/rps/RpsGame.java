@@ -3,20 +3,20 @@ package com.kodilla.rps;
 import java.util.*;
 
 public class RpsGame  {
-    private boolean validateName =false;
-    private boolean validateRounds = false;
     RpsMenu rpsMenu = new RpsMenu();
     Computer computer = new Computer();
     InputValidator inputValidator = new InputValidator();
     Player player = new Player();
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
-    private Random rnd = new Random();
+    private final Random rnd = new Random();
     private  boolean endGame = false;
-    String computerMove;
+    private String computerMove;
     boolean startGame = false;
 
     void startOfGame(){
+        boolean validateName;
+        boolean validateRounds;
         do{
             System.out.println("Please give me your Name to start the game");
             validateName = inputValidator.validateName();
@@ -38,9 +38,11 @@ public class RpsGame  {
             rpsMenu.rpsGameMenu(inputValidator.getName());
             inputValidator.validateMove();
             if(difficulty.equals("1")) {
-                computerMove = computer.computerMove();
+                computer.setHardModeOn(false);
+                computerMove = computer.computerMove(inputValidator.getMove());
             }else if (difficulty.equals("2"))  {
-                computerMove = computer.computerMoveOnHardMode(inputValidator.getMove());
+                computer.setHardModeOn(true);
+                computerMove = computer.computerMove(inputValidator.getMove());
             }
             menageAnswers(computerMove, inputValidator.getMove());
             rpsMenu.scoreBoard(player.getPlayerPoints(),computer.getComputerPoints());

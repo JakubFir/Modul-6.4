@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class InputValidator {
     private String name;
+    RpsMenu rpsMenu = new RpsMenu();
     private  int rounds;
     private boolean valid= false;
     private Integer move;
@@ -77,6 +78,7 @@ public class InputValidator {
                 answer = scanner.nextLine().trim().toLowerCase();
             }
         }while (!validEndGameAnswer);
+        rpsMenu.setEndGameChoice(answer);
         return validEndGameAnswer;
     }
 

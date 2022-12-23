@@ -5,32 +5,28 @@ import java.util.*;
 public class Computer {
     Player player = new Player();
     Random rnd = new Random();
+    boolean isHardModeOn = false;
     private int computerPoints = 0;
-    private Map<Integer,String> mapOfMoves;
-    private Map <Integer,String> listOfMovesOnHardMode;
+    private final Map<Integer,String> mapOfMovesOnHardMode = player.getMapOfMoves();
 
-    private Map<Integer,String> mapOfMovesOnHardMode(){
-        mapOfMoves = new HashMap<>();
-        mapOfMoves.put(1,"rock");
-        mapOfMoves.put(2,"paper");
-        mapOfMoves.put(3,"scisors");
-        return mapOfMoves;
+    public void setHardModeOn(boolean hardModeOn) {
+        isHardModeOn = hardModeOn;
     }
 
-    public String computerMove(){
-        return player.getMapOfMoves().get(rnd.nextInt(1,3));
+    private Map<Integer,String> mapOfMovesOnHardMode(Integer answer){
+        mapOfMovesOnHardMode.put(4, player.getMapOfMoves().get(answer));
+        return mapOfMovesOnHardMode;
     }
 
-    public Map<Integer,String> listOfMovesOnHardMode(Integer answer){
-        listOfMovesOnHardMode = mapOfMovesOnHardMode();
-        listOfMovesOnHardMode.put(4,player.getMapOfMoves().get(answer));
-    return listOfMovesOnHardMode;
-    }
+    public String computerMove(Integer answer){
+        if(isHardModeOn) {
+            System.out.println(mapOfMovesOnHardMode(answer));
+            return mapOfMovesOnHardMode(answer).get(rnd.nextInt(1,4));
+        }else if(!isHardModeOn)
+            System.out.println(player.getMapOfMoves());
+        return player.getMapOfMoves().get(rnd.nextInt(1, 3));
 
-    public String computerMoveOnHardMode(Integer answer){
-        return listOfMovesOnHardMode(answer).get(rnd.nextInt(1,4));
     }
-
     public void setComputerPoints(int computerPoints) {
         this.computerPoints = computerPoints;
     }
