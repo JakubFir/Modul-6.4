@@ -5,18 +5,15 @@ import java.util.Scanner;
 
 public class InputValidator {
     private String name;
-    RpsMenu rpsMenu = new RpsMenu();
+    private String endGameChoice;
+    private String gameMode;
+    private String dificulity;
     private  int rounds;
-    private boolean valid= false;
     private Integer move;
-    private boolean validateDifficulty = false;
-    private boolean validateMove = false;
-    private boolean validateRounds = false;
-    private boolean validEndGameAnswer = false;
     private Scanner scanner = new Scanner(System.in);
 
     boolean validateRounds(){
-        validateRounds = false;
+        boolean validateRounds;
         do {
             try {
                 rounds = scanner.nextInt();
@@ -31,7 +28,7 @@ public class InputValidator {
         return validateRounds;
     }
     boolean validateMove(){
-        validateMove = false;
+        boolean validateMove;
         do {
             try {
                 move = scanner.nextInt();
@@ -45,17 +42,23 @@ public class InputValidator {
         scanner.nextLine();
         return validateMove;
     }
-    boolean validateDifficulty(String answer){
-        if(answer.equals("1") || answer.equals("2")){
-            validateDifficulty = true;
-        }
-        else{
-            System.out.println("Wrong input");
-            validateDifficulty = false;
-        }
+    boolean validateDifficulty(){
+        boolean validateDifficulty;
+        do {
+            dificulity = scanner.nextLine();
+            if (dificulity.equals("1") || dificulity.equals("2")) {
+                validateDifficulty = true;
+            } else {
+                System.out.println("Wrong input");
+
+                validateDifficulty = false;
+            }
+        }while (!validateDifficulty);
+
             return validateDifficulty;
     }
     boolean validateName(){
+        boolean valid;
         do {
             name = scanner.nextLine().trim();
             if (name.length() == 0 || name.isBlank()) {
@@ -68,22 +71,50 @@ public class InputValidator {
         return valid;
     }
 
-     boolean validateEndGameAnswer(String answer) {
-        do{
-            if(answer.equals("y") || answer.equals("n")){
+     boolean validateEndGameAnswer() {
+         boolean validEndGameAnswer;
+         do{
+             endGameChoice = scanner.nextLine();
+            if(endGameChoice.equals("y") || endGameChoice.equals("n")){
                 validEndGameAnswer = true;
             }else {
                 System.out.println("wrong end game input");
                 validEndGameAnswer = false;
-                answer = scanner.nextLine().trim().toLowerCase();
             }
         }while (!validEndGameAnswer);
-        rpsMenu.setEndGameChoice(answer);
         return validEndGameAnswer;
+    }
+    public boolean validateGameMode() {
+        boolean validateMode = false;
+        do {
+            gameMode = scanner.nextLine();
+            if(gameMode.equals("1")|| gameMode.equals("2")){
+                validateMode = true;
+            }
+            else{
+                System.out.println("wrong game mode input");
+                validateMode = false;
+            }
+
+        }while (!validateMode);
+        setGameMode(gameMode);
+        return validateMode;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDificulity() {
+        return dificulity;
+    }
+
+    public String getEndGameChoice(){
+        return endGameChoice;
     }
 
     public Integer getMove() {
@@ -93,4 +124,9 @@ public class InputValidator {
     public int getRounds() {
         return rounds;
     }
+    public String getGameMode() {
+        return this.gameMode;
+    }
+
+
 }
