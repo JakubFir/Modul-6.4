@@ -21,20 +21,20 @@ public class Computer {
     }
 
     public String computerMove(Integer answer){
+        String computerMove = "";
         if(isHardModeOn && is5MovesGameOn) {
-            System.out.println(mapOf5MovesOnHardMode(answer));
-            return mapOf5MovesOnHardMode(answer).get(rnd.nextInt(1,6));
+            computerMove = mapOf5MovesOnHardMode(answer).get(rnd.nextInt(1,6));
         }
         else if(!isHardModeOn && !is5MovesGameOn) {
-            System.out.println(player.getMapOfMoves());
-            return player.getMapOfMoves().get(rnd.nextInt(1, 3));
+            computerMove = player.getMapOfMoves().get(rnd.nextInt(1, 3));
         }
         else if (!isHardModeOn && is5MovesGameOn) {
-            System.out.println(player.getMapOf5Moves());
-            return player.getMapOf5Moves().get(rnd.nextInt(1,5));
+            computerMove = player.getMapOf5Moves().get(rnd.nextInt(1,5));
         }
-        else
-            return mapOfMovesOnHardMode(answer).get((rnd.nextInt(1,4)));
+        else if(isHardModeOn && !is5MovesGameOn) {
+            computerMove = mapOfMovesOnHardMode(answer).get((rnd.nextInt(1, 4)));
+        }
+        return computerMove;
     }
     public void setComputerPoints(int computerPoints) {
         this.computerPoints = computerPoints;

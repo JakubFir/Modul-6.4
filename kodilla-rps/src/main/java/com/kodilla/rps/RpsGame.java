@@ -35,8 +35,6 @@ public class RpsGame  {
     void choosingComputerMove(){
         String difficulty = inputValidator.getDificulity();
         String gameMode = inputValidator.getGameMode();
-        System.out.println(gameMode);
-        System.out.println(difficulty);
         if(difficulty.equals("1") && gameMode.equals("1")) {
             computer.setHardModeOn(false);
             computer.set5MovesGameOn(false);
