@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class SeconChallengeTestSuite {
     @Test
-    public void TestProbablyIWillThrowException()
+    public void testProbablyIWillThrowException()
     {
         //given
         SecondChallenge secondChallenge = new SecondChallenge();
@@ -19,7 +19,6 @@ public class SeconChallengeTestSuite {
                 () -> assertThrows(exceptionHandling.getClass(),() -> secondChallenge.probablyIWillThrowException(10,2)),
                 () -> assertThrows(exceptionHandling.getClass(),() -> secondChallenge.probablyIWillThrowException(3,1.5)),
                 () -> assertDoesNotThrow(()  ->secondChallenge.probablyIWillThrowException(1.5,2))
-
         );
     }
 }

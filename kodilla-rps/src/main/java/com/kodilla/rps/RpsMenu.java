@@ -1,7 +1,5 @@
 package com.kodilla.rps;
 
-import java.util.Scanner;
-
 public class RpsMenu {
 
 
