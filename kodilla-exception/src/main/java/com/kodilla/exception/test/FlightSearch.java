@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FlightSearch {
-    public void findFlight(Flight flight) throws RouteNotFoundException {
+    public boolean findFlight(Flight flight) throws RouteNotFoundException {
         Map<String, Boolean> flightMap = new HashMap<>();
         flightMap.put("asd", true);
         flightMap.put("dsa", false);
@@ -12,6 +12,7 @@ public class FlightSearch {
 
         if (flightMap.containsKey(flight.getDepartureAirport())) {
             System.out.println("flight exists");
+            return true;
         } else {
             throw new RouteNotFoundException();
         }
