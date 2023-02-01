@@ -30,10 +30,9 @@ class MovieStore {
     }
 
     public void printMoviesSeparedWithExclamationMark(Map<String, List<String>> movies) {
-        List<String> titles = movies.entrySet().stream().flatMap(entry -> entry.getValue().stream()).toList();
-        for (int i = 0; i < titles.size() - 1; i++) {
-            System.out.print(titles.get(i) + "!");
-        }
-        System.out.println(titles.get(titles.size() - 1));
+        String result = movies.entrySet().stream()
+                .flatMap(entry -> entry.getValue().stream()).
+                collect(Collectors.joining("!"));
+        System.out.print(result);
     }
 }
