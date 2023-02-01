@@ -1,5 +1,5 @@
 package com.kodilla.challenges.allegro;
 
 public interface InformationService {
-    void inform(String email);
+    void sendEmail(String email);
 }

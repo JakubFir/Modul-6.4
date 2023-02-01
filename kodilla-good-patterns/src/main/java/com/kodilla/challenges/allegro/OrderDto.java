@@ -2,18 +2,21 @@ package com.kodilla.challenges.allegro;
 
 public class OrderDto {
     private User user;
-    private boolean isProductAvaible;
+    private boolean isProductAvailable;
 
-    public OrderDto(User user, boolean isProductAvailble, Product product) {
+    private Product product;
+
+    public OrderDto(User user, boolean isProductAvailable, Product product) {
         this.user = user;
-        this.isProductAvaible = isProductAvailble;
+        this.product = product;
+        this.isProductAvailable = isProductAvailable;
     }
 
     public User getUser() {
         return user;
     }
 
-    public boolean isProductAvaible() {
-        return isProductAvaible;
+    public boolean isProductAvailable() {
+        return isProductAvailable;
     }
 }

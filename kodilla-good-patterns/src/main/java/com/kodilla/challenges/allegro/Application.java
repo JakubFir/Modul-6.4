@@ -1,6 +1,6 @@
 package com.kodilla.challenges.allegro;
 
-public class Aplication {
+public class Application {
     public static void main(String[] args) {
 
         OrderRequestRetrevier orderRequestRetrevier = new OrderRequestRetrevier();

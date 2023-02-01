@@ -2,12 +2,12 @@ package com.kodilla.challenges.allegro;
 
 public class User {
     private String name;
-    private String adres;
+    private String address;
     private String mail;
 
     public User(String name, String adres, String mail) {
         this.name = name;
-        this.adres = adres;
+        this.address = adres;
         this.mail = mail;
     }
 
@@ -15,8 +15,8 @@ public class User {
         return name;
     }
 
-    public String getAdres() {
-        return adres;
+    public String getAddress() {
+        return address;
     }
 
     public String getMail() {

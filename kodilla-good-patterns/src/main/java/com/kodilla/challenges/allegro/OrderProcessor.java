@@ -16,13 +16,13 @@ public class OrderProcessor {
     public OrderDto process(final OrderRequest orderRequest) {
 
         boolean isProductAvailable = orderRepository.products().contains(orderRequest.getProduct());
-
-        if(isProductAvailable) {
-            informationService.inform(orderRequest.getUser().getMail());
+        if (isProductAvailable) {
             orderRepository.createOrder(orderRequest.getUser(), orderRequest.getProduct());
-            return new OrderDto(orderRequest.getUser(), isProductAvailable,orderRequest.getProduct());
+            informationService.sendEmail(orderRequest.getUser().getMail());
+            return new OrderDto(orderRequest.getUser(), isProductAvailable, orderRequest.getProduct());
         } else {
-            return new OrderDto(orderRequest.getUser(), isProductAvailable,orderRequest.getProduct());
+            System.out.println("xd");
+            return new OrderDto(orderRequest.getUser(), isProductAvailable, orderRequest.getProduct());
         }
     }
 }
