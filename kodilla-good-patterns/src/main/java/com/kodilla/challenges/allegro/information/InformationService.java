@@ -1,4 +1,4 @@
-package com.kodilla.challenges.allegro;
+package com.kodilla.challenges.allegro.information;
 
 public interface InformationService {
     void sendEmail(String email);

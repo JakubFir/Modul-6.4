@@ -1,4 +1,7 @@
-package com.kodilla.challenges.allegro;
+package com.kodilla.challenges.allegro.order;
+
+import com.kodilla.challenges.allegro.product.Product;
+import com.kodilla.challenges.allegro.user.User;
 
 public class Order {
     public Product product;

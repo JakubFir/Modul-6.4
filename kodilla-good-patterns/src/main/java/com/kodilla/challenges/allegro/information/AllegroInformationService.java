@@ -1,4 +1,4 @@
-package com.kodilla.challenges.allegro;
+package com.kodilla.challenges.allegro.information;
 
 public class AllegroInformationService implements InformationService {
     @Override

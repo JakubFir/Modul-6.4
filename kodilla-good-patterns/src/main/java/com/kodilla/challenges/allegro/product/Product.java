@@ -1,4 +1,4 @@
-package com.kodilla.challenges.allegro;
+package com.kodilla.challenges.allegro.product;
 
 import java.util.Objects;
 

@@ -1,4 +1,6 @@
-package com.kodilla.challenges.allegro;
+package com.kodilla.challenges.allegro.order;
+
+import com.kodilla.challenges.allegro.information.InformationService;
 
 public class OrderProcessor {
     private InformationService informationService;
@@ -13,7 +15,7 @@ public class OrderProcessor {
         this.orderRepository = orderRepository;
     }
 
-    public OrderDto process(final OrderRequest orderRequest) {
+    public OrderDto process(final AllegroOrderRequest orderRequest) {
 
         boolean isProductAvailable = orderRepository.products().contains(orderRequest.getProduct());
         if (isProductAvailable) {
