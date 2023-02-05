@@ -13,25 +13,30 @@ public class FlightProcessor {
     }
 
     public void processFlight() throws FlightNotFoundException {
-        Flight warsaw = new Flight("warsaw", Arrays.asList("zywiec", "poznan"));
-        Flight poznan = new Flight("poznan", Arrays.asList("france", "wroclaw"));
-        Flight gdansk = new Flight("gdansk", Arrays.asList("zywiec", "germany"));
-        Flight zywiec = new Flight("zywiec", Arrays.asList("katowice", "germany"));
-        Flight katowice = new Flight("katowice", Arrays.asList("poznan", "germany"));
+        Flight warsawToPoznan = new Flight("warsaw", "poznan",1);
+        Flight poznanToWroclaw = new Flight("poznan","wroclaw",2);
+        Flight gdanskToGermany = new Flight("gdansk", "zywiec",3);
+        Flight zywiecToGermany = new Flight("zywiec",  "germany",4);
+        Flight katowiceToGermany = new Flight("katowice",  "germany",5);
+        Flight warsawToGdansk = new Flight("warsaw", "gdansk",6);
 
-        flightsRepository.addFlight(warsaw);
-        flightsRepository.addFlight(poznan);
-        flightsRepository.addFlight(gdansk);
-        flightsRepository.addFlight(zywiec);
-        flightsRepository.addFlight(katowice);
+        flightsRepository.addFlight(warsawToPoznan);
+        flightsRepository.addFlight(poznanToWroclaw);
+        flightsRepository.addFlight(gdanskToGermany);
+        flightsRepository.addFlight(zywiecToGermany);
+        flightsRepository.addFlight(katowiceToGermany);
+        flightsRepository.addFlight(warsawToGdansk);
 
-        System.out.println(flightsRepository.getFlightsWithOneConnectingFlight(warsaw.getDepartureCity(), "france"));
-        System.out.println();
         System.out.println(flightsRepository.getAllFlights());
         System.out.println();
-        System.out.println(flightsRepository.getAllDeparturesFromCity(gdansk.getDepartureCity()));
+        System.out.println(flightsRepository.getAllDeparturesFromCity("warsaw"));
         System.out.println();
-        System.out.println(flightsRepository.getAllArrivalsToCity(katowice.getDepartureCity()));
+        System.out.println(flightsRepository.getAllArrivalsToCity("germany"));
+        System.out.println();
+        System.out.println(flightsRepository.getFlightsWithOneConnectingFlight("gdansk","germany"));
+        System.out.println();
+
+
 
     }
 }

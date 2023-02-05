@@ -5,32 +5,44 @@ import java.util.Objects;
 
 public class Flight {
     private String departureCity;
-    private List<String> destinationCity;
+    private String destinationCity;
 
+    private long flightId;
     public String getDepartureCity() {
         return departureCity;
     }
 
-    public List<String> getDestinationCity() {
+    public String getDestinationCity() {
         return destinationCity;
     }
 
-    public Flight(String departureCity, List<String> destinationCity) {
+    public long getFlightId() {
+        return flightId;
+    }
+
+    public Flight(String departureCity, String destinationCity, long flightId) {
         this.departureCity = departureCity;
         this.destinationCity = destinationCity;
+        this.flightId = flightId;
+    }
+
+    @Override
+    public String toString() {
+        return  departureCity +"->"+ destinationCity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+        return flightId == flight.flightId && Objects.equals(departureCity, flight.departureCity) && Objects.equals(destinationCity, flight.destinationCity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(departureCity);
+        return Objects.hash(departureCity, destinationCity, flightId);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Flight flight = (Flight) obj;
-        return departureCity.equals(flight.departureCity) &&
-                destinationCity.equals(flight.destinationCity);
-    }
+
 }
