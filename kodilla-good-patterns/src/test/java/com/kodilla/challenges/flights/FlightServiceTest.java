@@ -19,14 +19,17 @@ class FlightServiceTest {
     @Test
     void shouldReturnAllFlightsFromWarsaw() {
         //given
-        Flight warszawa = new Flight("warsaw", "poznan",1);
-
-        FlightService flightService = Mockito.mock(FlightService.class);
-        when(flightService.getAllDeparturesFromCity(warszawa.getDepartureCity())).thenReturn(Arrays.asList("poznan"));
+        Flight warsaw = new Flight("warsaw", "poznan",1);
+        Flight poznan = new Flight("poznan","france",2);
+        Flight gdansk = new Flight("gdansk",  "poznan",3);
+        FlightService flightService = new FlightService();
+        flightService.addFlight(warsaw);
+        flightService.addFlight(poznan);
+        flightService.addFlight(gdansk);
         //when
-        List<String> result = flightService.getAllDeparturesFromCity(warszawa.getDepartureCity());
+        List<String> result = flightService.getAllDeparturesFromCity(warsaw.getDepartureCity());
         //then
-        Assertions.assertEquals(warszawa.getDestinationCity(),result.get(0));
+        Assertions.assertEquals(warsaw.getDestinationCity(),result.get(0));
 
 
     }
