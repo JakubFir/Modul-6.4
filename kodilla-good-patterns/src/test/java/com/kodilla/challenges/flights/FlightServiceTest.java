@@ -1,51 +1,48 @@
 package com.kodilla.challenges.flights;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+
 import java.util.List;
 
 
-import static org.mockito.Mockito.when;
 
 
 class FlightServiceTest {
-
+    FlightService flightService;
+    @BeforeEach
+    void setUp() {
+        Flight warsaw = new Flight("warsaw", "poznan",1);
+        Flight poznan = new Flight("poznan","france",2);
+        Flight gdansk = new Flight("gdansk",  "poznan",3);
+        flightService = new FlightService();
+        flightService.addFlight(warsaw);
+        flightService.addFlight(poznan);
+        flightService.addFlight(gdansk);
+    }
 
     @Test
     void shouldReturnAllFlightsFromWarsaw() {
         //given
-        Flight warsaw = new Flight("warsaw", "poznan",1);
-        Flight poznan = new Flight("poznan","france",2);
-        Flight gdansk = new Flight("gdansk",  "poznan",3);
-        FlightService flightService = new FlightService();
-        flightService.addFlight(warsaw);
-        flightService.addFlight(poznan);
-        flightService.addFlight(gdansk);
+
         //when
-        List<String> result = flightService.getAllDeparturesFromCity(warsaw.getDepartureCity());
+        List<String> result = flightService.getAllDeparturesFromCity("warsaw");
         //then
-        Assertions.assertEquals(warsaw.getDestinationCity(),result.get(0));
+        Assertions.assertEquals("poznan",result.get(0));
 
 
     }
     @Test
     void testGetAllArrivalsToCity() {
         Flight warsaw = new Flight("warsaw","poznan",1);
-        Flight poznan = new Flight("poznan", "wroclaw",2);
         Flight gdansk = new Flight("gdansk","poznan",3);
-        FlightService flightService = new FlightService();
-        flightService.addFlight(warsaw);
-        flightService.addFlight(poznan);
-        flightService.addFlight(gdansk);
-
         // when
-        List<Flight> arrivalsToCity = flightService.getAllArrivalsToCity(poznan.getDepartureCity());
-
+        List<Flight> arrivalsToCity = flightService.getAllArrivalsToCity("poznan");
         // then
         List<Flight> expected = new ArrayList<>();
         expected.add(warsaw);
@@ -55,13 +52,7 @@ class FlightServiceTest {
 
     @Test
     void testFlightWithOneConnectingFlight() throws FlightNotFoundException {
-        Flight warsaw = new Flight("warsaw", "poznan",1);
-        Flight poznan = new Flight("poznan","france",2);
-        Flight gdansk = new Flight("gdansk",  "poznan",3);
-        FlightService flightService = new FlightService();
-        flightService.addFlight(warsaw);
-        flightService.addFlight(poznan);
-        flightService.addFlight(gdansk);
+
         //when
         List<String> result = flightService.getFlightsWithOneConnectingFlight("warsaw","france");
         //then
