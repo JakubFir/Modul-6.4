@@ -1,10 +1,8 @@
 package com.kodilla.challenges.food2door.foodOrder;
 
-import com.kodilla.challenges.food2door.supplier.Supplier;
+import com.kodilla.challenges.food2door.foodOrder.supplier.Supplier;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FoodOrderService implements FoodOrderRepository {

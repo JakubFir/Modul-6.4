@@ -2,7 +2,7 @@ package com.kodilla.challenges.food2door;
 
 import com.kodilla.challenges.food2door.foodOrder.*;
 import com.kodilla.challenges.food2door.information.FoodInformation;
-import com.kodilla.challenges.food2door.supplier.SupplierService;
+import com.kodilla.challenges.food2door.foodOrder.supplier.SupplierService;
 
 public class FoodApplication {
     public static void main(String[] args) {

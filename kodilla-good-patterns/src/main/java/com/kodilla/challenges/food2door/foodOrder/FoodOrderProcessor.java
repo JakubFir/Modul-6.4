@@ -1,7 +1,7 @@
 package com.kodilla.challenges.food2door.foodOrder;
 
 import com.kodilla.challenges.food2door.information.FoodInformationRepository;
-import com.kodilla.challenges.food2door.supplier.SupplierRepository;
+import com.kodilla.challenges.food2door.foodOrder.supplier.SupplierRepository;
 
 public class FoodOrderProcessor {
     private FoodOrderRepository foodOrderRepository;

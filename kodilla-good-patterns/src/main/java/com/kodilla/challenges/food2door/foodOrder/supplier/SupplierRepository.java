@@ -1,4 +1,4 @@
-package com.kodilla.challenges.food2door.supplier;
+package com.kodilla.challenges.food2door.foodOrder.supplier;
 
 import java.util.List;
 

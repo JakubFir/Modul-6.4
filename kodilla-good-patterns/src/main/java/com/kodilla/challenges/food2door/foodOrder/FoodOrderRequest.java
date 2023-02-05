@@ -1,6 +1,6 @@
 package com.kodilla.challenges.food2door.foodOrder;
 
-import com.kodilla.challenges.food2door.supplier.Supplier;
+import com.kodilla.challenges.food2door.foodOrder.supplier.Supplier;
 
 public class FoodOrderRequest {
 

@@ -1,6 +1,6 @@
 package com.kodilla.challenges.food2door.information;
 
-import com.kodilla.challenges.food2door.supplier.Supplier;
+import com.kodilla.challenges.food2door.foodOrder.supplier.Supplier;
 
 public class FoodInformation implements FoodInformationRepository {
 
