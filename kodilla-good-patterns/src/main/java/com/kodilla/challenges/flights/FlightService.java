@@ -32,7 +32,8 @@ public class FlightService implements FlightsRepository {
         return getAllFlights().entrySet().stream()
                 .filter(entry -> entry.getValue().getDestinationCity().contains(city))
                 .map(Map.Entry::getValue).collect(Collectors.toList());
-    }
+        }
+
 
     @Override
     public List<String> getFlightsWithOneConnectingFlight(String city, String destination) throws FlightNotFoundException {
