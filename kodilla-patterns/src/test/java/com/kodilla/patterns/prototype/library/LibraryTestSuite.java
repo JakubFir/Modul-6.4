@@ -29,6 +29,7 @@ public class LibraryTestSuite {
             throw new RuntimeException(e);
         }
         //when
+        shallowCopyLibrary.getBooks().add(book4);
         //then
         assertEquals(shallowCopyLibrary.getBooks().size(),library.getBooks().size());
 
