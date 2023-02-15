@@ -43,10 +43,8 @@ public class UserTestSuite {
         //given
         User kamil = new Millenials("kamil l.");
         //when
-        System.out.println(kamil.sharePost());
         kamil.setSocialPublisher(new SnapchatPublisher());
         String sharingMethod = kamil.sharePost();
-        System.out.println(kamil.sharePost());
         //then
         assertEquals("sharing on snapchat", sharingMethod);
     }
