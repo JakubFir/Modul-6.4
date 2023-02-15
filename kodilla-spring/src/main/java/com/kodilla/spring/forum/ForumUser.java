@@ -11,6 +11,6 @@ public class ForumUser {
     }
 
     public ForumUser() {
-
+        List<Integer>
     }
 }
