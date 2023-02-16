@@ -7,9 +7,7 @@ public class PaintingTask implements Task {
     private final String taskName;
     private final String color;
     private final String whatToPaint;
-
-
-    private List<String> executedTasks = new ArrayList<>();
+    private boolean executedTask;
 
     public PaintingTask(String taskName, String color, String whatToPaint) {
         this.taskName = taskName;
@@ -19,7 +17,7 @@ public class PaintingTask implements Task {
 
     @Override
     public void executeTask() {
-        executedTasks.add(taskName);
+        executedTask = true;
     }
 
     @Override
@@ -29,6 +27,6 @@ public class PaintingTask implements Task {
 
     @Override
     public boolean isTaskExecuted() {
-        return executedTasks.contains(taskName);
+        return executedTask;
     }
 }

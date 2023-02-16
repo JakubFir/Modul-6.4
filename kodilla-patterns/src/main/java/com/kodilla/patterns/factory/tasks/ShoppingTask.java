@@ -8,7 +8,7 @@ public class ShoppingTask implements Task {
     private final String whatToBuy;
     private final double quantity;
 
-    private List<String> executedTasks = new ArrayList<>();
+    private boolean executedTask;
 
     public ShoppingTask(String taskName, String whatToBuy, double quantity) {
         this.taskName = taskName;
@@ -18,7 +18,7 @@ public class ShoppingTask implements Task {
 
     @Override
     public void executeTask() {
-        executedTasks.add(taskName);
+        executedTask = true;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ShoppingTask implements Task {
 
     @Override
     public boolean isTaskExecuted() {
-        return executedTasks.contains(getTaskName());
+        return executedTask;
     }
 
 }

@@ -8,8 +8,7 @@ public class DrivingTask implements Task {
     private final String where;
     private final String using;
 
-    private List<String> executedTasks = new ArrayList<>();
-
+    private boolean executedTask;
     public DrivingTask(String taskName, String where, String using) {
         this.taskName = taskName;
         this.where = where;
@@ -18,7 +17,7 @@ public class DrivingTask implements Task {
 
     @Override
     public void executeTask() {
-        executedTasks.add(taskName);
+        executedTask = true;
     }
 
     @Override
@@ -28,6 +27,6 @@ public class DrivingTask implements Task {
 
     @Override
     public boolean isTaskExecuted() {
-        return executedTasks.contains(taskName);
+        return executedTask;
     }
 }
