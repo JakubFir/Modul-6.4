@@ -1,0 +1,4 @@
+INSERT INTO posts(USER_ID, BODY) VALUES(1,"lalala");
+UPDATE posts SET BODY = "ToDelete" WHERE ID = 7;
+DELETE FROM posts WHERE ID = 7;
+COMMIT;
