@@ -4,13 +4,12 @@ import java.util.List;
 
 public class SudokuAlgorithm {
     private SudokuBoard sudokuBoard;
-
+   private boolean haventMadeMove;
     public SudokuAlgorithm(SudokuBoard sudokuBoard) {
         this.sudokuBoard = sudokuBoard;
     }
 
     public void solve() {
-        boolean haventMadeMove = true;
         while (!haventMadeMove) {
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
@@ -19,7 +18,7 @@ public class SudokuAlgorithm {
                         if (currentPossibleMoves.size() == 1) {
                             int move = currentPossibleMoves.get(0);
                             sudokuBoard.setSudokuElement(col, row, new SudokuElement(move));
-                            haventMadeMove = true;
+                            haventMadeMove = false;
                         } else {
                             for (int move : currentPossibleMoves) {
                                 boolean foundMatch = false;
@@ -35,12 +34,12 @@ public class SudokuAlgorithm {
                                             sudokuBoard.getElement(col, i).getValue() == move && sudokuBoard.getElement(col, row).getPossibleMoves().size() == 1 ||
                                             sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getValue() == move &&
                                                     sudokuBoard.getElement(col, row).getPossibleMoves().size() == 1) {
-                                        haventMadeMove = false;
+                                        haventMadeMove = true;
                                         System.out.println("error");
                                     }
                                     if (!foundMatch) {
                                         sudokuBoard.setSudokuElement(col, row, new SudokuElement(move));
-                                        haventMadeMove=true;
+                                        haventMadeMove=false;
                                         break;
                                     }
                                 }
@@ -52,4 +51,6 @@ public class SudokuAlgorithm {
             haventMadeMove = true;
         }
     }
+
+
 }
