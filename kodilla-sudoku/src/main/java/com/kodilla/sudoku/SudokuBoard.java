@@ -63,6 +63,9 @@ public class SudokuBoard {
     public String toString() {
         String result = "";
         for (int row = 0; row < 9; row++) {
+            if(row  % 3==0){
+                result += "+------+------+------+\n";
+            }
             result += board.get(row).toString();
         }
         return result;

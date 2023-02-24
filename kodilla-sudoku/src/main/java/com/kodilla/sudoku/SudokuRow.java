@@ -22,11 +22,14 @@
 
         @Override
         public String toString() {
-            String result = "|";
+            String result = "";
             for (int i = 0; i < 9; i++) {
-                result += row.get(i).toString() + "|";
+                if(i % 3==0){
+                    result += "|";
+                }
+                result += row.get(i).toString() ;
             }
-            result += "\n";
+            result += "|\n";
             return result;
         }
     }
