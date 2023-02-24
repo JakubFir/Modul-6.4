@@ -3,7 +3,7 @@ package com.kodilla.sudoku;
 import java.util.Arrays;
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         SudokuBoard sudokuBoard = new SudokuBoard();
         SudokuAlgorithm sudokuAlgorithm = new SudokuAlgorithm(sudokuBoard);
         sudokuBoard.setSudokuElement(0, 1, new SudokuElement(6));
@@ -50,7 +50,12 @@ public class Application {
 
 
         sudokuAlgorithm.solve();
+        SudokuBoard sudokuBoard1 = sudokuBoard.deepCopy();
         System.out.println(sudokuBoard);
+        System.out.println(sudokuBoard1);
+        sudokuBoard1.setSudokuElement(0,0,new SudokuElement(4));
+        System.out.println(sudokuBoard);
+        System.out.println(sudokuBoard1);
 
 
     }

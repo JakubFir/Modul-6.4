@@ -7,13 +7,19 @@
     public class SudokuRow {
 
         private List<SudokuElement> row = new ArrayList<>();
-        private List<SudokuElement> possibleMoves = new ArrayList<>();
+
+        public SudokuRow(SudokuRow originalRow) {
+            for (SudokuElement element : originalRow.getRow()) {
+                row.add(new SudokuElement(element.getValue()));
+            }
+        }
+        public void setRow(List<SudokuElement> row) {
+            this.row = row;
+        }
 
         public List<SudokuElement> getRow() {
             return row;
         }
-
-
         public SudokuRow() {
             for (int i = 0; i < 9; i++) {
                 row.add(new SudokuElement(SudokuElement.EMPTY));
