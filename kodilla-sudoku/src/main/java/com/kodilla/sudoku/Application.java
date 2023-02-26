@@ -19,7 +19,7 @@ public class Application {
 
         sudokuBoard.setSudokuElement(2, 4, new SudokuElement(4));
         sudokuBoard.setSudokuElement(2, 6, new SudokuElement(9));
-        sudokuBoard.setSudokuElement(2, 8, new SudokuElement(6));
+        sudokuBoard.setSudokuElement(2, 8, new SudokuElement(3));
 
         sudokuBoard.setSudokuElement(3, 0, new SudokuElement(2));
         sudokuBoard.setSudokuElement(3, 3, new SudokuElement(1));
@@ -33,7 +33,7 @@ public class Application {
 
         sudokuBoard.setSudokuElement(5, 2, new SudokuElement(4));
         sudokuBoard.setSudokuElement(5, 4, new SudokuElement(2));
-        sudokuBoard.setSudokuElement(5, 5, new SudokuElement(6));
+        sudokuBoard.setSudokuElement(5, 5, new SudokuElement(3));
         sudokuBoard.setSudokuElement(5, 8, new SudokuElement(8));
 
         sudokuBoard.setSudokuElement(6, 0, new SudokuElement(7));
@@ -46,8 +46,11 @@ public class Application {
         sudokuBoard.setSudokuElement(7, 6, new SudokuElement(7));
         sudokuBoard.setSudokuElement(7, 7, new SudokuElement(3));
 
-        sudokuBoard.setSudokuElement(8, 0, new SudokuElement(6));
-
+        sudokuBoard.setSudokuElement(8, 0, new SudokuElement(1));
+        sudokuBoard.setSudokuElement(8, 5, new SudokuElement(8));
+        sudokuBoard.setSudokuElement(8, 6, new SudokuElement(4));
+        sudokuBoard.setSudokuElement(8, 7, new SudokuElement(6));
+        System.out.println(sudokuBoard);
         sudokuAlgorithm.solve();
         sudokuAlgorithm.test();
         System.out.println(sudokuBoard);

@@ -13,10 +13,6 @@
                 row.add(new SudokuElement(element.getValue()));
             }
         }
-        public void setRow(List<SudokuElement> row) {
-            this.row = row;
-        }
-
         public List<SudokuElement> getRow() {
             return row;
         }

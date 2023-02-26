@@ -36,6 +36,7 @@ public class SudokuBoard extends Prototype<SudokuBoard> {
 
     public void setSudokuElement(int col, int row, SudokuElement sudokuElement) {
         board.get(row).getRow().set(col, sudokuElement);
+        sudokuElement.getPossibleMoves().clear();
     }
 
     public List<Integer> currentElementPossibleMoves(int col, int row) {

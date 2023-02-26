@@ -24,19 +24,19 @@ public class SudokuAlgorithm {
                             for (int move : currentPossibleMoves) {
                                 boolean foundMatch = false;
                                 for (int i = 0; i < 9; i++) {
-                                    if (sudokuBoard.getElement(i, row).getValue() == move || sudokuBoard.getElement(i, row).getPossibleMoves().contains(move) &&
-                                            sudokuBoard.getElement(col, i).getValue() == move || sudokuBoard.getElement(col, i).getPossibleMoves().contains(move) &&
-                                            sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getValue() == move ||
-                                            sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getPossibleMoves().contains(move)) {
+                                    if (sudokuBoard.currentElementPossibleMoves(i, row).contains(move) && sudokuBoard.currentElementPossibleMoves(i, row).size() == 1 ||
+                                            sudokuBoard.currentElementPossibleMoves(col, i).contains(move) && sudokuBoard.currentElementPossibleMoves(col, i).size() == 1 ||
+                                            sudokuBoard.currentElementPossibleMoves((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).contains(move) &&
+                                                    sudokuBoard.currentElementPossibleMoves((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).size() == 1) {
                                         foundMatch = true;
                                         break;
                                     }
-                                    if (sudokuBoard.getElement(i, row).getValue() == move && sudokuBoard.getElement(col, row).getPossibleMoves().size() == 1 ||
-                                            sudokuBoard.getElement(col, i).getValue() == move && sudokuBoard.getElement(col, row).getPossibleMoves().size() == 1 ||
-                                            sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getValue() == move &&
-                                                    sudokuBoard.getElement(col, row).getPossibleMoves().size() == 1) {
-                                        haventMadeMove = true;
+                                    if (move == sudokuBoard.getElement(i, row).getValue() ||
+                                            move == sudokuBoard.getElement(col, i).getValue() ||
+                                            move == sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getValue() &&
+                                                    sudokuBoard.currentElementPossibleMoves(col, row).size() == 1 && sudokuBoard.currentElementPossibleMoves(col, row).contains(move)) {
                                         System.out.println("error");
+                                        break;
                                     }
                                 }
                                 if (!foundMatch) {
@@ -44,6 +44,8 @@ public class SudokuAlgorithm {
                                     haventMadeMove = false;
                                     break;
                                 }
+
+
                             }
                         }
                     }
@@ -54,11 +56,12 @@ public class SudokuAlgorithm {
         }
 
     }
+
     void test() {
-        for (int i = 0; i < 9; i++){
-            for(int j =0; j<9; j ++){
-                if(sudokuBoard.getElement(i,j).getValue() == -1){
-                    System.out.println(sudokuBoard.getElement(i,j).getPossibleMoves());
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (sudokuBoard.getElement(i, j).getValue() == -1) {
+                    System.out.println(sudokuBoard.currentElementPossibleMoves(i, j));
                 }
             }
         }
