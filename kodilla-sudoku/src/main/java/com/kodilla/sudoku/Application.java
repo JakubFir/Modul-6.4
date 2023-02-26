@@ -48,15 +48,9 @@ public class Application {
 
         sudokuBoard.setSudokuElement(8, 0, new SudokuElement(6));
 
-
         sudokuAlgorithm.solve();
-        SudokuBoard sudokuBoard1 = sudokuBoard.deepCopy();
+        sudokuAlgorithm.test();
         System.out.println(sudokuBoard);
-        System.out.println(sudokuBoard1);
-        sudokuBoard1.setSudokuElement(0,0,new SudokuElement(4));
-        System.out.println(sudokuBoard);
-        System.out.println(sudokuBoard1);
-
 
     }
 }

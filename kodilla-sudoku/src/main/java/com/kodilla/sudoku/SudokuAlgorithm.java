@@ -4,7 +4,8 @@ import java.util.List;
 
 public class SudokuAlgorithm {
     private SudokuBoard sudokuBoard;
-   private boolean haventMadeMove;
+    private boolean haventMadeMove;
+
     public SudokuAlgorithm(SudokuBoard sudokuBoard) {
         this.sudokuBoard = sudokuBoard;
     }
@@ -23,10 +24,10 @@ public class SudokuAlgorithm {
                             for (int move : currentPossibleMoves) {
                                 boolean foundMatch = false;
                                 for (int i = 0; i < 9; i++) {
-                                    if (sudokuBoard.getElement(i, row).getValue() == move && sudokuBoard.getElement(i, row).getPossibleMoves().contains(move) ||
-                                            sudokuBoard.getElement(col, i).getValue() == move && sudokuBoard.getElement(col, i).getPossibleMoves().contains(move) ||
-                                            sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getValue() == move &&
-                                                    sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getPossibleMoves().contains(move)) {
+                                    if (sudokuBoard.getElement(i, row).getValue() == move || sudokuBoard.getElement(i, row).getPossibleMoves().contains(move) &&
+                                            sudokuBoard.getElement(col, i).getValue() == move || sudokuBoard.getElement(col, i).getPossibleMoves().contains(move) &&
+                                            sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getValue() == move ||
+                                            sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getPossibleMoves().contains(move)) {
                                         foundMatch = true;
                                         break;
                                     }
@@ -37,20 +38,29 @@ public class SudokuAlgorithm {
                                         haventMadeMove = true;
                                         System.out.println("error");
                                     }
-                                    if (!foundMatch) {
-                                        sudokuBoard.setSudokuElement(col, row, new SudokuElement(move));
-                                        haventMadeMove=false;
-                                        break;
-                                    }
+                                }
+                                if (!foundMatch) {
+                                    sudokuBoard.setSudokuElement(col, row, new SudokuElement(move));
+                                    haventMadeMove = false;
+                                    break;
                                 }
                             }
                         }
                     }
                 }
+                haventMadeMove = true;
             }
-            haventMadeMove = true;
+
+        }
+
+    }
+    void test() {
+        for (int i = 0; i < 9; i++){
+            for(int j =0; j<9; j ++){
+                if(sudokuBoard.getElement(i,j).getValue() == -1){
+                    System.out.println(sudokuBoard.getElement(i,j).getPossibleMoves());
+                }
+            }
         }
     }
-
-
 }
