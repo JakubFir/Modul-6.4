@@ -1,69 +1,106 @@
 package com.kodilla.sudoku;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SudokuAlgorithm {
     private SudokuBoard sudokuBoard;
-    private boolean haventMadeMove;
+    private CheckConstreins checkConstreins = new CheckConstreins();
+    private List<BacktrackObject> backtrackObjects = new ArrayList<>();
+    private boolean unsolvable = false;
 
     public SudokuAlgorithm(SudokuBoard sudokuBoard) {
         this.sudokuBoard = sudokuBoard;
     }
 
-    public void solve() {
-        while (!haventMadeMove) {
+    public boolean validate(int col, int row, int value) {
+        if (col > 9 || row > 9 || value > 9) {
+            System.out.println("invalid move");
+            return false;
+        }
+        if (sudokuBoard.currentElementPossibleMoves(col, row).contains(value)) {
+            sudokuBoard.setSudokuElement(col, row, new SudokuElement(value));
+            return true;
+        } else {
+            System.out.println("move invalid");
+            return false;
+        }
+    }
+
+    public boolean solve() throws CloneNotSupportedException {
+        while (!isSolved() && !unsolvable) {
+            int numFilled = 0;
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
                     if (sudokuBoard.getElement(col, row).getValue() == SudokuElement.EMPTY) {
                         List<Integer> currentPossibleMoves = sudokuBoard.currentElementPossibleMoves(col, row);
-                        if (currentPossibleMoves.size() == 1) {
-                            int move = currentPossibleMoves.get(0);
-                            sudokuBoard.setSudokuElement(col, row, new SudokuElement(move));
-                            haventMadeMove = false;
-                        } else {
+                        if (sudokuBoard.getElement(col, row).getValue() == -1 && sudokuBoard.currentElementPossibleMoves(col, row).size() == 0) {
+                            undo();
+                        }
+                        if (!checkConstreins.checkForOnePossibleMoveLeft(currentPossibleMoves, col, row, sudokuBoard)) {
                             for (int move : currentPossibleMoves) {
-                                boolean foundMatch = false;
-                                for (int i = 0; i < 9; i++) {
-                                    if (sudokuBoard.currentElementPossibleMoves(i, row).contains(move) && sudokuBoard.currentElementPossibleMoves(i, row).size() == 1 ||
-                                            sudokuBoard.currentElementPossibleMoves(col, i).contains(move) && sudokuBoard.currentElementPossibleMoves(col, i).size() == 1 ||
-                                            sudokuBoard.currentElementPossibleMoves((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).contains(move) &&
-                                                    sudokuBoard.currentElementPossibleMoves((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).size() == 1) {
-                                        foundMatch = true;
-                                        break;
-                                    }
-                                    if (move == sudokuBoard.getElement(i, row).getValue() ||
-                                            move == sudokuBoard.getElement(col, i).getValue() ||
-                                            move == sudokuBoard.getElement((col / 3) * 3 + i % 3, (row / 3) * 3 + i / 3).getValue() &&
-                                                    sudokuBoard.currentElementPossibleMoves(col, row).size() == 1 && sudokuBoard.currentElementPossibleMoves(col, row).contains(move)) {
-                                        System.out.println("error");
-                                        break;
-                                    }
-                                }
-                                if (!foundMatch) {
+                                if (checkConstreins.checkIfMoveIsntPossibleInOtherFields(col, row, move, sudokuBoard)) {
                                     sudokuBoard.setSudokuElement(col, row, new SudokuElement(move));
-                                    haventMadeMove = false;
+                                    numFilled++;
                                     break;
                                 }
-
-
                             }
                         }
                     }
                 }
-                haventMadeMove = true;
             }
-
-        }
-
-    }
-
-    void test() {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (sudokuBoard.getElement(i, j).getValue() == -1) {
-                    System.out.println(sudokuBoard.currentElementPossibleMoves(i, j));
+            if (numFilled == 0) {
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 9; j++) {
+                        if (sudokuBoard.getElement(i, j).getValue() == -1) {
+                            if (sudokuBoard.currentElementPossibleMoves(i,j).size() > 0) {
+                                int move = sudokuBoard.currentElementPossibleMoves(i,j).get(0);
+                                guess(i, j, move);
+                            } else {
+                                unsolvable = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (unsolvable) {
+                        break;
+                    }
                 }
             }
         }
+        return isSolved();
+    }
+
+    private void guess(int i, int j, int move) throws CloneNotSupportedException {
+        SudokuBoard copy = sudokuBoard.deepCopy();
+        backtrackObjects.add(new BacktrackObject(copy, i, j, move));
+        sudokuBoard.setSudokuElement(i, j, new SudokuElement(move));
+        solve();
+    }
+
+
+    private boolean isSolved() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (sudokuBoard.getElement(i, j).getValue() == -1) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void undo() {
+        if (backtrackObjects.size() > 0) {
+            BacktrackObject lastBacktrack = backtrackObjects.get(backtrackObjects.size() - 1);
+            sudokuBoard = lastBacktrack.getSudokuBoard();
+            sudokuBoard.setSudokuElement(lastBacktrack.getCol(), lastBacktrack.getRow(), new SudokuElement(SudokuElement.EMPTY));
+            sudokuBoard.currentElementPossibleMoves(lastBacktrack.getCol(), lastBacktrack.getRow()).remove(Integer.valueOf(lastBacktrack.getValue()));
+            backtrackObjects.remove(backtrackObjects.size() - 1);
+        }
+        if (backtrackObjects.size() > 60) {
+            backtrackObjects.remove(0);
+        }
     }
 }
+

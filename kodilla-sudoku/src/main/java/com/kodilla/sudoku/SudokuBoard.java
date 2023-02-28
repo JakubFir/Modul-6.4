@@ -85,5 +85,6 @@ public class SudokuBoard extends Prototype<SudokuBoard> {
         }
         return result;
     }
+
 }
 
