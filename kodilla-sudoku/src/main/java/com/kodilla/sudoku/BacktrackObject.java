@@ -1,7 +1,5 @@
 package com.kodilla.sudoku;
 
-import java.util.List;
-
 public class BacktrackObject {
     private final SudokuBoard sudokuBoard;
     private final int row;
@@ -30,7 +28,6 @@ public class BacktrackObject {
     public int getValue() {
         return value;
     }
-
 
 
 }

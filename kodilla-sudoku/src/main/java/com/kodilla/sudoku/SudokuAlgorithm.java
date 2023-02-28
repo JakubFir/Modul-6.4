@@ -53,8 +53,8 @@ public class SudokuAlgorithm {
                 for (int i = 0; i < 9; i++) {
                     for (int j = 0; j < 9; j++) {
                         if (sudokuBoard.getElement(i, j).getValue() == -1) {
-                            if (sudokuBoard.currentElementPossibleMoves(i,j).size() > 0) {
-                                int move = sudokuBoard.currentElementPossibleMoves(i,j).get(0);
+                            if (sudokuBoard.currentElementPossibleMoves(i, j).size() > 0) {
+                                int move = sudokuBoard.currentElementPossibleMoves(i, j).get(0);
                                 guess(i, j, move);
                             } else {
                                 unsolvable = true;
