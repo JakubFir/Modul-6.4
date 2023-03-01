@@ -30,7 +30,7 @@ public class SudokuAlgorithm {
 
     public boolean solve() throws CloneNotSupportedException {
         while (!isSolved() || !unsolvable) {
-            if(guessCount > 11){
+            if(guessCount > 13){
                 return isSolved();
             }
             int numFilled = 0;

@@ -43,7 +43,6 @@ public class Application {
         sudokuBoard.setSudokuElement(7, 3, new SudokuElement(4));
 
         sudokuBoard.setSudokuElement(7, 6, new SudokuElement(7));
-        sudokuBoard.setSudokuElement(7, 7, new SudokuElement(3));
 
         if(sudokuAlgorithm.solve()){
             System.out.println(sudokuBoard);
