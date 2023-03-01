@@ -7,6 +7,7 @@ public class SudokuGame {
     SudokuMenu sudokuMenu = new SudokuMenu();
 
     public void startGame() throws CloneNotSupportedException {
+
         boolean gameFinished = false;
         do {
             sudokuMenu.displayBoard(sudokuBoard);
@@ -15,8 +16,15 @@ public class SudokuGame {
                gameFinished = resolveSudoku();
             }
         }while (!gameFinished);
+
     }
     private boolean resolveSudoku() throws CloneNotSupportedException {
-        return sudokuAlgorithm.solve();
+        if(sudokuAlgorithm.solve()){
+            System.out.println(sudokuBoard);
+            return true;
+        }else{
+            System.out.println(sudokuBoard + " Board unsolvable");
+            return true;
+        }
     }
 }

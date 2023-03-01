@@ -5,22 +5,18 @@ import java.util.Arrays;
 public class Application {
     public static void main(String[] args) throws CloneNotSupportedException {
 
-        SudokuBoard sudokuBoard = new SudokuBoard();
+      SudokuBoard sudokuBoard = new SudokuBoard();
         SudokuAlgorithm sudokuAlgorithm = new SudokuAlgorithm(sudokuBoard);
-        SudokuGame sudokuGame = new SudokuGame();
-
         sudokuBoard.setSudokuElement(0, 1, new SudokuElement(6));
         sudokuBoard.setSudokuElement(0, 2, new SudokuElement(1));
-
+        sudokuBoard.setSudokuElement(0, 3, new SudokuElement(8));
         sudokuBoard.setSudokuElement(0, 8, new SudokuElement(7));
-
         sudokuBoard.setSudokuElement(1, 1, new SudokuElement(8));
-
+        sudokuBoard.setSudokuElement(1, 2, new SudokuElement(9));
         sudokuBoard.setSudokuElement(1, 3, new SudokuElement(2));
         sudokuBoard.setSudokuElement(1, 5, new SudokuElement(5));
-
         sudokuBoard.setSudokuElement(1, 7, new SudokuElement(4));
-
+        sudokuBoard.setSudokuElement(2, 4, new SudokuElement(4));
         sudokuBoard.setSudokuElement(2, 6, new SudokuElement(9));
         sudokuBoard.setSudokuElement(2, 8, new SudokuElement(3));
 
@@ -49,10 +45,11 @@ public class Application {
         sudokuBoard.setSudokuElement(7, 6, new SudokuElement(7));
         sudokuBoard.setSudokuElement(7, 7, new SudokuElement(3));
 
-        sudokuAlgorithm.solve();
-        System.out.println(sudokuBoard);
-
-
+        if(sudokuAlgorithm.solve()){
+            System.out.println(sudokuBoard);
+        }else{
+            System.out.println(sudokuBoard + " unsolable");
+        }
 
     }
 }

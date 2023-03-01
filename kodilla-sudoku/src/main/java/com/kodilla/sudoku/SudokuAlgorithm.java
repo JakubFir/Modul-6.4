@@ -8,6 +8,7 @@ public class SudokuAlgorithm {
     private CheckConstreins checkConstreins = new CheckConstreins();
     private List<BacktrackObject> backtrackObjects = new ArrayList<>();
     private boolean unsolvable = false;
+    private int guessCount =0;
 
     public SudokuAlgorithm(SudokuBoard sudokuBoard) {
         this.sudokuBoard = sudokuBoard;
@@ -28,7 +29,10 @@ public class SudokuAlgorithm {
     }
 
     public boolean solve() throws CloneNotSupportedException {
-        while (!isSolved() && !unsolvable) {
+        while (!isSolved() || !unsolvable) {
+            if(guessCount > 11){
+                return isSolved();
+            }
             int numFilled = 0;
             for (int row = 0; row < 9; row++) {
                 for (int col = 0; col < 9; col++) {
@@ -55,23 +59,17 @@ public class SudokuAlgorithm {
                         if (sudokuBoard.getElement(i, j).getValue() == -1) {
                             if (sudokuBoard.currentElementPossibleMoves(i, j).size() > 0) {
                                 int move = sudokuBoard.currentElementPossibleMoves(i, j).get(0);
-                                guess(i, j, move);
-                            } else {
-                                unsolvable = true;
-                                break;
+                                 guess(i, j, move);
                             }
                         }
-                    }
-                    if (unsolvable) {
-                        break;
                     }
                 }
             }
         }
         return isSolved();
     }
-
     private void guess(int i, int j, int move) throws CloneNotSupportedException {
+        guessCount++;
         SudokuBoard copy = sudokuBoard.deepCopy();
         backtrackObjects.add(new BacktrackObject(copy, i, j, move));
         sudokuBoard.setSudokuElement(i, j, new SudokuElement(move));
@@ -103,4 +101,3 @@ public class SudokuAlgorithm {
         }
     }
 }
-
