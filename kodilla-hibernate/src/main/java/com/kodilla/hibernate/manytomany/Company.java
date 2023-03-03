@@ -6,6 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retrieveCompanyNameBy3FirstLetters",
+        query = "SELECT * FROM COMPANIES WHERE LEFT(COMPANY_NAME,3) = :NAME"
+)
 
 @Entity
 @Table(name = "COMPANIES")
@@ -36,6 +40,7 @@ public class Company {
     public String getName() {
         return name;
     }
+
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     public List<Employee> getEmployees() {
         return employees;

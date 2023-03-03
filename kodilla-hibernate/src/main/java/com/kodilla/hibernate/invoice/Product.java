@@ -13,6 +13,13 @@ public class Product {
     private int id;
     private String name;
 
+    public Product(String name) {
+        this.name = name;
+    }
+
+    public Product() {
+    }
+
     @OneToMany(
             targetEntity = Item.class,
             mappedBy = "product",
@@ -20,13 +27,6 @@ public class Product {
             fetch = FetchType.LAZY
     )
     private List<Item> items = new ArrayList<>();
-
-    public Product(String name) {
-        this.name = name;
-    }
-
-    public Product() {
-    }
 
     public int getId() {
         return id;
