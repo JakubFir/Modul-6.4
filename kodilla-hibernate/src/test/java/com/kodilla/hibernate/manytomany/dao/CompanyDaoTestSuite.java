@@ -71,17 +71,25 @@ class CompanyDaoTestSuite {
         Company dataMaesters = new Company("Data Maesters");
         Company greyMatter = new Company("Grey Matter");
 
-
         //when
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+
         List<Object[]> companies = companyDao.retrieveCompanyNameBy3FirstLetters("Dat");
 
         //then
         assertEquals(1, companies.size());
         //CleanUp
-        companyDao.deleteById(softwareMachine.getId());
-        companyDao.deleteById(dataMaesters.getId());
-        companyDao.deleteById(greyMatter.getId());
-
-
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }
