@@ -15,15 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class InvoiceDaoTestSuite {
 
     @Autowired
-    InvoiceDao invoiceDao;
+    private InvoiceDao invoiceDao;
     @Autowired
-     ProductDao productDao;
+    private ProductDao productDao;
 
 
     @Test
     void testInvoiceDaoSave() {
-        Item item = new Item(new BigDecimal(100),100,new BigDecimal(100));
-        Item item2 = new Item(new BigDecimal(100),100,new BigDecimal(100));
+        Item item = new Item(new BigDecimal(100), 100, new BigDecimal(100));
+        Item item2 = new Item(new BigDecimal(100), 100, new BigDecimal(100));
         Product product = new Product("product");
         Product product2 = new Product("product2");
         item.setProduct(product);
@@ -46,7 +46,7 @@ public class InvoiceDaoTestSuite {
 
         //Then
         assertNotEquals(0, invoiceId);
-        assertNotEquals(0,productId);
+        assertNotEquals(0, productId);
 
         //CleanUp
         try {
