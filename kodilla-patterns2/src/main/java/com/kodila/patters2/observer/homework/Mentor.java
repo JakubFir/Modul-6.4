@@ -24,7 +24,7 @@ public class Mentor implements TaskTopicObserver {
         }
     }
 
-    public void addStudents(Student student) {
+    public void addStudent(Student student) {
         students.add(student);
     }
 

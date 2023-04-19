@@ -15,10 +15,10 @@ class TasksTopicTest {
         Student student = new Student("Student");
 
         Mentor jackMentor = new Mentor("Bob");
-        jackMentor.addStudents(jack);
+        jackMentor.addStudent(jack);
 
         Mentor studentMentor = new Mentor("foo");
-        studentMentor.addStudents(student);
+        studentMentor.addStudent(student);
 
 
         javaTasks.registerObserver(jackMentor);
