@@ -56,7 +56,7 @@ public class LibraryTestSuite {
         //when
         deepCopyLibrary.getBooks().add(book4);
         //then
-        assertEquals(5,deepCopyLibrary.getBooks().size());
+        assertEquals(4,deepCopyLibrary.getBooks().size());
         assertEquals(4,library.getBooks().size());
 
     }

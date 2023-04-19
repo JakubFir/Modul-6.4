@@ -79,7 +79,7 @@ class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
 
-        List<Object[]> companies = companyDao.retrieveCompanyNameBy3FirstLetters("Dat");
+        List<Company> companies = companyDao.retrieveCompanyNameBy3FirstLetters("Dat");
 
         //then
         assertEquals(1, companies.size());

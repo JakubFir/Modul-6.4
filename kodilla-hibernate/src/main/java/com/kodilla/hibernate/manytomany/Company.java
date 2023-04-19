@@ -8,9 +8,9 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.retrieveCompanyNameBy3FirstLetters",
-        query = "SELECT * FROM COMPANIES WHERE LEFT(COMPANY_NAME,3) = :NAME"
+        query = "SELECT * FROM COMPANIES WHERE LEFT(COMPANY_NAME,3) = :NAME",
+        resultClass=Company.class
 )
-
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -26,7 +26,6 @@ public class Company {
     public Company(String name) {
         this.name = name;
     }
-
     @Id
     @GeneratedValue
     @NotNull
