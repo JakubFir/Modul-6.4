@@ -11,91 +11,107 @@ class PizzaTestSuite {
 
 
     @Test
-    public void testBasicTaxiOrderGetCost() {
-        // Given
+    public void testBasicPizzaOrderGetCost() {
+        //Given
         PizzaOrder theOrder = new BasicPizzaOrder();
-        // When
+
+        //When
         BigDecimal calculatedCost = theOrder.getCost();
-        // Then
+
+        //Then
         assertEquals(new BigDecimal(10), calculatedCost);
     }
 
     @Test
-    public void testBasicTaxiOrderGetIngredients() {
-        // Given
+    public void testBasicPizzaOrderGetIngredients() {
+        //Given
         PizzaOrder theOrder = new BasicPizzaOrder();
-        // When
+
+        //When
         String ingredients = theOrder.getIngredients();
-        // Then
+
+        //Then
         assertEquals("cheese", ingredients);
     }
 
     @Test
     public void testDoubleCheesePizzaOrderGetPrice() {
-        //given
+        //Given
         PizzaOrder theOrder = new BasicPizzaOrder();
         theOrder = new DoubleCheesePizzaOrder(theOrder);
-        //when
+
+        //When
         BigDecimal calculatedCost = theOrder.getCost();
-        //then
+
+        //Then
         assertEquals(new BigDecimal(13), calculatedCost);
     }
 
     @Test
     public void testDoubleCheesePizzaOrderGetIngredients() {
-        //given
+        //Given
         PizzaOrder theOrder = new BasicPizzaOrder();
         theOrder = new DoubleCheesePizzaOrder(theOrder);
-        //when
+
+        //When
         String ingredients = theOrder.getIngredients();
-        //then
+
+        //Then
         assertEquals("cheese cheese", ingredients);
     }
 
     @Test
     public void testDoubleCrustPizzaOrderGetPrice() {
-        //given
+        //Given
         PizzaOrder theOrder = new BasicPizzaOrder();
         theOrder = new DoubleCrustPizzaOrder(theOrder);
-        //when
+
+        //When
         BigDecimal calculatedCost = theOrder.getCost();
-        //then
+
+        //Then
         assertEquals(new BigDecimal(14), calculatedCost);
     }
 
     @Test
     public void testDoubleCrustPizzaOrderGetIngredients() {
-        //given
+        //Given
         PizzaOrder theOrder = new BasicPizzaOrder();
         theOrder = new DoubleCrustPizzaOrder(theOrder);
-        //when
+
+        //When
         String ingredients = theOrder.getIngredients();
-        //then
+
+        //Then
         assertEquals("cheese double crust ", ingredients);
     }
 
     @Test
     public void testDoubleCrustDoubleCheesePizzaOrderGetPrice() {
-        //given
+        //Given
         PizzaOrder theOrder = new BasicPizzaOrder();
         theOrder = new DoubleCrustPizzaOrder(theOrder);
         theOrder = new DoubleCheesePizzaOrder(theOrder);
-        //when
+
+        //When
         BigDecimal calculatedCost = theOrder.getCost();
-        //then
+
+        //Then
         assertEquals(new BigDecimal(17), calculatedCost);
     }
 
 
     @Test
     public void testDoubleCrustDoubleCheesePizzaOrderGetIngredients() {
-        //given
+        //Given
         PizzaOrder theOrder = new BasicPizzaOrder();
         theOrder = new DoubleCrustPizzaOrder(theOrder);
         theOrder = new DoubleCheesePizzaOrder(theOrder);
-        //when
+
+        //When
         String ingredients = theOrder.getIngredients();
-        //then
+
+        //Then
         assertEquals("cheese double crust cheese ", ingredients);
     }
 

@@ -18,6 +18,6 @@ public abstract class AbstractPizzaOrderDecorator implements PizzaOrder{
 
     @Override
     public String getIngredients() {
-        return pizzaOrder.getIngredients();gi
+        return pizzaOrder.getIngredients();
     }
 }

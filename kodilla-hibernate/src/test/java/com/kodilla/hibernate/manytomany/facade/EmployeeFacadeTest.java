@@ -21,18 +21,23 @@ class EmployeeFacadeTest {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee employee = new Employee("John", "mithici");
-        //when
+
+        //When
         employeeFacade.addEmployee(johnSmith);
         employeeFacade.addEmployee(employee);
         List<Employee> employeesByFewLetters = employeeFacade.searchEmployeeByFewLetters("ith");
         String lastname = employeesByFewLetters.get(0).getLastname();
-        //then
+
+        //Then
         assertEquals("Smith", lastname);
         assertEquals(2,employeesByFewLetters.size());
 
-
         //CleanUp
-        employeeFacade.deleteById(johnSmith.getId());
-        employeeFacade.deleteById(employee.getId());
+        try {
+            employeeFacade.deleteById(johnSmith.getId());
+            employeeFacade.deleteById(employee.getId());
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }

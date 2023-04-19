@@ -19,14 +19,20 @@ public class EmployeeDaoTestSuite {
     void testEmployeeNamedQuery() {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
-        //when
+
+        //When
         employeeDao.save(johnSmith);
         List<Employee> employeesByLastName = employeeDao.retrieveEmployeeByLastName("Smith");
         String lastname = employeesByLastName.get(0).getLastname();
-        //then
+
+        //Then
         assertEquals("Smith", lastname);
 
         //CleanUp
-        employeeDao.deleteById(johnSmith.getId());
+        try {
+            employeeDao.deleteById(johnSmith.getId());
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }

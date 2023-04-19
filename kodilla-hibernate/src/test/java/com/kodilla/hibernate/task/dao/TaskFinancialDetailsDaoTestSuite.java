@@ -32,6 +32,10 @@ class TaskFinancialDetailsDaoTestSuite {
         assertEquals(1, resultList.size());
 
         //CleanUp
-        taskFinancialDetailsDao.deleteById(id);
+        try {
+            taskFinancialDetailsDao.deleteById(id);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }

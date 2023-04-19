@@ -18,16 +18,16 @@ class CompanyFacadeTest {
 
     @Test
     void retrieveCompanyNameByFewLetters() {
+        //Given
         Company softwareMachine = new Company("Software Machine");
 
-        //when
+        //When
         companyFacade.addCompany(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
-
         List<Company> companies = companyFacade.searchCompanyByFewLetters("mach");
-
-        //then
+        //Then
         assertEquals(1, companies.size());
+
         //CleanUp
         try {
             companyFacade.deleteById(softwareMachineId);

@@ -66,12 +66,12 @@ class CompanyDaoTestSuite {
 
     @Test
     void testCompanyNativeNamedQuery() {
-        //given
+        //Given
         Company softwareMachine = new Company("Software Machine");
         Company dataMaesters = new Company("Data Maesters");
         Company greyMatter = new Company("Grey Matter");
 
-        //when
+        //When
         companyDao.save(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
         companyDao.save(dataMaesters);
@@ -81,8 +81,9 @@ class CompanyDaoTestSuite {
 
         List<Company> companies = companyDao.retrieveCompanyNameBy3FirstLetters("Dat");
 
-        //then
+        //Then
         assertEquals(1, companies.size());
+
         //CleanUp
         try {
             companyDao.deleteById(softwareMachineId);

@@ -20,18 +20,22 @@ class TaskListDaoTestSuite {
 
     @Test
     void testFindByListName(){
-        //given
+        //Given
         TaskList taskList = new TaskList("TaskToDo", "tasks to o");
 
-        //when
+        //When
         taskListDao.save(taskList);
         List<TaskList> result = taskListDao.findByListName("TaskToDo");
 
-        //then
+        //Then
         assertEquals(result.get(0).getListName(),taskList.getListName());
 
-        //cleanUp
-        taskListDao.deleteById(taskList.getId());
+        //CleanUp
+        try {
+            taskListDao.deleteById(taskList.getId());
+        } catch (Exception e) {
+            //do nothing
+        }
 
     }
     @Test
@@ -57,6 +61,10 @@ class TaskListDaoTestSuite {
         assertNotEquals(0, id);
 
         //CleanUp
-        taskListDao.deleteById(id);
+        try {
+            taskListDao.deleteById(id);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }
