@@ -128,6 +128,7 @@ public class CrudAppTestSuite {
                     WebElement deleteButton = theForm.findElement(By.xpath("./div/fieldset[1]/button[4]"));
                     deleteButton.click();
                 });
+        Thread.sleep(5000);
     }
 }
 
